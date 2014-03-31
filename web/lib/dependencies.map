@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "dependencies.js",
+  "sourceRoot": "",
+  "sources": [
+    "dependencies.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;CAAA,CAAA,CAIG,GAJH,CAIG,EAAE,EAAF,GAAA,CAJI,GAAA,gBAAA;CAML,KAAA,EAAA;CAAA,CAAwC,CAA/B,CAAT,EAAA,CAAgB,EAAwB,EAA6C,GAA5E;WAET;CAAA,CACc,EADd,EACE,IAAA;CALD;CAJH,EAIG;CAJH"
+}

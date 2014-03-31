@@ -1,0 +1,16 @@
+{
+   "name": "Cashpoint",
+   "version": "0.1.0",
+   "main": "index.html",
+   "ignore": [
+      ".jshintrc",
+      "**/*.txt"
+   ],
+   "dependencies": {
+      "angular": "1.2.x",
+      "angular-route": "1.2.x",
+      "bootstrap": "3.0.0",
+      "font-awesome": "3.2.1",
+      "requirejs": "2.1.9"
+   }
+}

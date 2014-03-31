@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "cashpoint.js",
+  "sourceRoot": "",
+  "sources": [
+    "cashpoint.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;CAAA,KAAA,uBAAA;;CAAA,CAAA,CAAU,IAAV,EAAU;;CAAV,CACA,CAAU,IAAV,SAAU;;CADV,CAGA,CAAS,GAAT,GAAS;;CAHT,CAIA,CAAA,IAAM;;CAJN,CAMA,CAAA,IAAA;;CANA,CAQA,CAAG,IAAY,GAAP;;CARR,CASA,CAAG,GAAK,CAAO,EAAP;;CATR,CAUA,CAAG,GAAK,CAAO,CAAA;;CAVf,CAYA,CAAG,CAAH,EAAA;CAZA"
+}

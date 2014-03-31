@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "vouchers.js",
+  "sourceRoot": "",
+  "sources": [
+    "vouchers.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;CAAA,CAAA,CAEG,GAFH,CAEG,EAAE,yBAFE;CAGL,KAAA,EAAA;CAAA,CAAoC,CAA3B,CAAT,EAAA,CAAgB,GAAP;CAAT,CAEwC,CAEtC,CAFF,EAAM,EAAkC,CAErC,CAFH,UAAA;CAHC,UASD;CAXF,EAEG;CAFH"
+}
