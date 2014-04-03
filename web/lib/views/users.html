@@ -1,1 +1,44 @@
-<div>Users</div>
+<h2>Users</h2>
+<div class="row">
+    <div class="col-md-6">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Benutzername</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="user in users">
+                <td>{{user.name}}</td>
+                <td>
+                    <button type="button" class="btn btn-default btn-xs" ng-click="editUser( user )"><i class="glyphicon glyphicon-edit"></i></button>
+                    <button type="button" class="btn btn-default btn-xs" ng-click="deleteUser( user )"><i class="glyphicon glyphicon-trash"></i></button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Benutzer anlegen</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <form class="form-inline" role="form">
+                        <div class="form-group">
+                            <label class="sr-only" for="addUserName">Benutzername</label>
+                            <input type="text" class="form-control" id="addUserName" placeholder="Benutzername" ng-model="newUserName">
+                        </div>
+                        <button type="submit" class="btn btn-default" ng-click="addNewUser()">Speichern</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

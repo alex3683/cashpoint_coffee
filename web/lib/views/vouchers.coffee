@@ -1,11 +1,11 @@
 define [
-  'bower_components/angular/angular'
+  'angular'
 ], ( angular ) ->
   module = angular.module 'vouchers', []
 
   module.controller 'VouchersController', [
-    '$scope',
-    ($scope) ->
+    '$scope', 'vouchersDb'
+    ($scope, vouchersDb) ->
 
   ]
 
