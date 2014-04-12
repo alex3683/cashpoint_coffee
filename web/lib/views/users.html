@@ -1,26 +1,7 @@
-<h2>Users</h2>
+<h2>Benutzer</h2>
 <div class="row">
-    <div class="col-md-6">
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Benutzername</th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="user in users">
-                <td>{{user.name}}</td>
-                <td>
-                    <button type="button" class="btn btn-default btn-xs" ng-click="editUser( user )"><i class="glyphicon glyphicon-edit"></i></button>
-                    <button type="button" class="btn btn-default btn-xs" ng-click="deleteUser( user )"><i class="glyphicon glyphicon-trash"></i></button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="col-md-6">
-        <table class="table">
+    <div class="col-md-4">
+        <table class="table table-condensed">
             <thead>
             <tr>
                 <th>Benutzer anlegen</th>
@@ -29,13 +10,47 @@
             <tbody>
             <tr>
                 <td>
-                    <form class="form-inline" role="form">
+                    <form class="form-inline" role="form" name="newUserForm">
                         <div class="form-group">
                             <label class="sr-only" for="addUserName">Benutzername</label>
-                            <input type="text" class="form-control" id="addUserName" placeholder="Benutzername" ng-model="newUserName">
+                            <input type="text"
+                                   class="form-control"
+                                   id="addUserName"
+                                   placeholder="Benutzername"
+                                   ng-model="newUser.name">
                         </div>
-                        <button type="submit" class="btn btn-default" ng-click="addNewUser()">Speichern</button>
+                        <button type="submit" class="btn btn-default" ng-click="addUser()">Speichern</button>
                     </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <table class="table table-condensed">
+            <thead>
+            <tr>
+                <th>Benutzername</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="user in users">
+                <td>
+                    <span ng-show="editingUser != user">{{user.name}}</span>
+
+                    <div class="input-group input-group-sm" ng-show="editingUser == user">
+                        <label class="sr-only" for="editUser_{{$index}}">Benutzername</label>
+                        <input class="form-control" type="text" ng-model="user.name" id="editUser_{{$index}}" ng-keyup="editKeyUp($event)" cp-focus-on="editingUser == user">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" ng-click="editUserApply()"><i class="glyphicon glyphicon-ok"></i></button>
+                            <button class="btn btn-danger" type="button" ng-click="editUserCancel()"><i class="glyphicon glyphicon-remove"></i></button>
+                        </span>
+                    </div>
+                </td>
+                <td style="white-space: nowrap; text-align: right">
+                    <button type="button" class="btn btn-default btn-xs" ng-click="editUser( user )"><i class="glyphicon glyphicon-edit"></i></button>
+                    <button type="button" class="btn btn-default btn-xs" ng-click="deleteUser( user )"><i class="glyphicon glyphicon-trash"></i></button>
                 </td>
             </tr>
             </tbody>

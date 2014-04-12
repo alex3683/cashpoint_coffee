@@ -1,1 +1,82 @@
-<div>Vouchers</div>
+<h2>Kassenzettel</h2>
+<div class="row">
+    <div class="col-md-4">
+        <table class="table table-condensed">
+            <thead>
+            <tr>
+                <th>Kassenzettel anlegen</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <form role="form">
+                        <div class="form-group">
+                            <label for="newVoucherAmount">Betrag</label>
+                            <input type="number"
+                                   step="0.01"
+                                   class="form-control"
+                                   id="newVoucherAmount"
+                                   placeholder="Betrag"
+                                   ng-model="newVoucher.amount"
+                                   required>
+                        </div>
+                        <div class="form-group">
+                            <label for="newVoucherDate">Bezahlt am</label>
+                            <input type="date"
+                                   class="form-control"
+                                   id="newVoucherDate"
+                                   placeholder="Bezahlt am"
+                                   ng-model="newVoucher.paidAt"
+                                   required>
+                        </div>
+                        <div class="form-group">
+                            <label for="newVoucherUser">Bezahlt von</label>
+                            <select class="form-control"
+                                    id="newVoucherUser"
+                                    ng-options="user.name for user in users"
+                                    ng-model="newVoucher.paidBy"
+                                    required></select>
+                        </div>
+                        <div class="form-group">
+                            <label for="newVoucherComment">Kommentar</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="newVoucherComment"
+                                   placeholder="Kommentar"
+                                   ng-model="newVoucher.comment"
+                                   required>
+                        </div>
+                        <button type="submit" class="btn btn-default" ng-click="addVoucher()">Hinzufügen</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-8">
+        <table class="table table-condensed">
+            <thead>
+            <tr>
+                <th>Betrag</th>
+                <th>Bezahlt am</th>
+                <th>Bezahlt von</th>
+                <th>Kommentar</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="voucher in vouchers">
+                <td>{{voucher.amount}}</td>
+                <td>{{voucher.paidAt}}</td>
+                <td>{{voucher.paidBy.name}}</td>
+                <td>{{voucher.comment}}</td>
+                <td style="white-space: nowrap; text-align: right">
+                    <button type="button" class="btn btn-default btn-xs" ng-click="repayVoucher( voucher )"><i class="glyphicon glyphicon-euro"></i></button>
+                    <button type="button" class="btn btn-default btn-xs" ng-click="deleteVoucher( voucher )"><i class="glyphicon glyphicon-trash"></i></button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,10 +1,7 @@
 define [
   'angular'
+  './services'
   './views/vouchers'
   './views/users'
-], (angular, vouchersModule, usersModule) ->
-  angular.module 'dependencies', [
-    'ngRoute'
-    vouchersModule.name
-    usersModule.name
-  ]
+], (ng, modules...) ->
+  ng.module('dependencies', modules.map((_)->_.name))
