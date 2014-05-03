@@ -13,7 +13,6 @@
         vouchersService.updateUsersInScope($scope);
         vouchersService.updateVouchersInScope($scope);
         $scope.addVoucher = function() {
-          console.log($scope.newVoucher);
           if ($scope.newVoucher && $scope.newVoucher.amount) {
             $scope.newVoucher.repaid = false;
             $scope.newVoucher.repaidAt = null;
@@ -25,8 +24,11 @@
             };
           }
         };
-        return $scope.deleteVoucher = function(voucher) {
+        $scope.deleteVoucher = function(voucher) {
           return vouchersService.deleteVoucher($scope, voucher);
+        };
+        return $scope.repayVoucher = function(voucher) {
+          return vouchersService.repayVoucher($scope, voucher);
         };
       }
     ]);
@@ -38,30 +40,38 @@
         };
         fetchUsers = function() {
           return usersDb.allDocs(options).then(function(_) {
-            return _.rows || [];
+            return (_.rows || []).map(function(_) {
+              return _.doc;
+            });
           });
         };
         fetchVouchers = function() {
-          return vouchersDb.allDocs(options).then(function(_) {
-            return _.rows || [];
+          return vouchersDb.query({
+            map: function(doc) {
+              if (!doc.repaid) {
+                return emit(doc._id, doc);
+              }
+            }
+          }, {
+            reduce: false
+          }).then(function(_) {
+            return (_.rows || []).map(function(_) {
+              return _.value;
+            });
           });
         };
         return obj = {
           updateUsersInScope: function(scope) {
             return fetchUsers().then(function(rows) {
               return scope.$apply(function() {
-                return scope.users = rows.map(function(_) {
-                  return _.doc;
-                });
+                return scope.users = rows;
               });
             });
           },
           updateVouchersInScope: function(scope) {
             return fetchVouchers().then(function(rows) {
               return scope.$apply(function() {
-                return scope.vouchers = rows.map(function(_) {
-                  return _.doc;
-                });
+                return scope.vouchers = rows;
               });
             });
           },
@@ -79,7 +89,7 @@
           repayVoucher: function(scope, voucher) {
             voucher.repaid = true;
             return toQ(function() {
-              return usersDb.put(voucher).then(function() {
+              return vouchersDb.put(voucher).then(function() {
                 return obj.updateVouchersInScope(scope);
               });
             });
